@@ -43,13 +43,12 @@
 .drinks {
     display: flex;
     flex-direction: column;
-    /* margin-top: 70px; */
 }
 
 .drink-type {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .drinks h1 {
@@ -63,6 +62,7 @@
     width: 150px;
     height: 150px;
     padding: 8px;
+    border-radius: 50%;
 }
 
 .traditional-drinks , .non-traditional-drinks{
@@ -77,6 +77,7 @@
 .tej, .tela, .areqe, .beer, .wine, .whisky{
     display: flex;
     padding: 20px;
+    
 }
 
 .description {
