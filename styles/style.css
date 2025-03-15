@@ -13,6 +13,7 @@
     width: 100%;
     top: 0;
     left: 0;
+    z-index: 1000;
 }
 
 .header h1 {
@@ -38,6 +39,13 @@
 .header nav a:hover {
     background-color: white;
     color: lightgreen;
+}
+
+.cart-icon img{
+    width: 40px;
+    height: 35px;
+    border-radius: 5px;
+    padding: ;
 }
 
 
