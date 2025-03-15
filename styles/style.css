@@ -40,44 +40,44 @@
     height: 400px;
 }
 
-.drinks {
+.drinks, .foods {
     display: flex;
     flex-direction: column;
 }
 
-.drink-type {
+.drink-type , .food-type{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-.drinks h1 {
+.drinks h1 , .foods h1{
     align-self: center;
     color: lightgreen;
     padding: 30px;
     margin: 15px;
 }
 
-.drinks img {
+.drinks img , .foods img{
     width: 150px;
     height: 150px;
     padding: 8px;
     border-radius: 50%;
 }
 
-.traditional-drinks , .non-traditional-drinks{
+.traditional-drinks , .non-traditional-drinks , .vegetarial , .non-vegetarial{
     display: flex;
     flex-direction: column;
 }
 
-.drinks .traditional-drinks h2, .drinks .non-traditional h2 {
+.drinks .traditional-drinks h2, .drinks .non-traditional h2 , .vegetarial h2 , .non-vegetarial h2{
     align-self: center;
     padding: 10px;
     margin: 10px;
     color: lightgreen;
 }
 
-.tej, .tela, .areqe, .beer, .wine, .whisky{
+.tej, .tela, .areqe, .beer, .wine, .whisky, .aynet, .suf , .shuro, .gomen, .kitfo, .shekla, .doro, .kurt{
     display: flex;
     padding: 20px;
     margin: 10px;
@@ -85,7 +85,7 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1),0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.tej:hover , .tela:hover , .areqe:hover, .beer:hover, .whisky:hover  ,.wine:hover {
+.tej:hover , .tela:hover , .areqe:hover, .beer:hover, .whisky:hover  ,.wine:hover , .aynet:hover, .suf:hover , .gomen:hover, .shuro:hover, .kurt:hover, .kitfo:hover, .shekla:hover, .doro:hover{
     transform: translateY(-10px) scale(1.05);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
