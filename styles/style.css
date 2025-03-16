@@ -36,12 +36,18 @@
 }
 
 .header nav a {
-    padding: 8px;
+    padding: 5px;
     margin: 3px;
+    padding-bottom: 0;
     text-decoration: none;
     color: white;
     border-radius: 20px;
     font-size: 0.9rem; 
+}
+
+.header nav a:not(:last-child):hover {
+    background-color: white;
+    color: green;
 }
 
 .cart-icon img {
@@ -114,7 +120,7 @@
     
     .header nav a {
         font-size: 1rem;
-        padding: 10px;
+        padding: 5px;
     }
     
     .cart-icon img {
@@ -137,11 +143,14 @@
     width: 100%;
     margin-top: 80px;
     height: 400px;
+    left: 0;
+    right: 0;
 }
 
 .drinks, .foods {
     display: flex;
     flex-direction: column;
+    margin-top: 10px;
 }
 
 .drink-type , .food-type{
@@ -241,7 +250,6 @@ details p {
     font-size: 8px;
 }
 
-/* Feedback Section Styles */
 .feedback-section {
     padding: 40px 20px;
     background-color: #f9f9f9;
