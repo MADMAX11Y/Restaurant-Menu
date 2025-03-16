@@ -41,11 +41,9 @@ document.addEventListener('DOMContentLoaded', function() {
             cartItemsContainer.appendChild(row);
         });
         
-        // Update cart totals
         updateCartTotals();
     }
     
-    // Add event listeners for quantity buttons
     document.querySelectorAll('.quantity-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const row = this.closest('tr');
@@ -61,11 +59,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             input.value = value;
             
-            // Update cart in localStorage
             cart[index].quantity = value;
             localStorage.setItem('cart', JSON.stringify(cart));
             
-            // Update row total
             const itemPrice = parseFloat(cart[index].price.replace('$', ''));
             const itemTotal = itemPrice * value;
             row.querySelector('td:nth-child(4)').textContent = `$${itemTotal.toFixed(2)}`;
@@ -74,29 +70,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Add event listeners for remove buttons
     document.querySelectorAll('.remove-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const row = this.closest('tr');
             const index = parseInt(row.dataset.index);
             
-            // Remove item from cart array
             cart.splice(index, 1);
             
-            // Update localStorage
             localStorage.setItem('cart', JSON.stringify(cart));
             
-            // Remove row from table
             row.remove();
             
-            // Update indices for remaining rows
             document.querySelectorAll('#cart-items tr').forEach((row, i) => {
                 row.dataset.index = i;
             });
             
             updateCartTotals();
             
-            // Show empty cart message if cart is empty
             if (cart.length === 0) {
                 cartTable.style.display = 'none';
                 cartSummary.style.display = 'none';
@@ -105,26 +95,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Function to update cart totals
     function updateCartTotals() {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         
-        // Calculate subtotal
         const subtotal = cart.reduce((total, item) => {
             const price = parseFloat(item.price.replace('$', ''));
             return total + (price * item.quantity);
         }, 0);
         
-        // Calculate tax (10%)
         const tax = subtotal * 0.1;
         
-        // Delivery fee
         const delivery = 5.00;
         
-        // Calculate total
         const total = subtotal + tax + delivery;
         
-        // Update summary display
         const summaryRows = document.querySelectorAll('.summary-row');
         summaryRows[0].querySelector('span:last-child').textContent = `$${subtotal.toFixed(2)}`;
         summaryRows[1].querySelector('span:last-child').textContent = `$${tax.toFixed(2)}`;
@@ -132,12 +116,9 @@ document.addEventListener('DOMContentLoaded', function() {
         summaryRows[3].querySelector('span:last-child').textContent = `$${total.toFixed(2)}`;
     }
     
-    // Add event listener for checkout button
     document.querySelector('.checkout-btn').addEventListener('click', function() {
         alert('Thank you for your order!');
-        // Clear cart
         localStorage.setItem('cart', JSON.stringify([]));
-        // Redirect to home page
         window.location.href = 'index.html';
     });
 });
