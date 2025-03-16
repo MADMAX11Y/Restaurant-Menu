@@ -14,17 +14,20 @@
     top: 0;
     left: 0;
     z-index: 1000;
+    padding: 0;
 }
 
 .header h1 {
     padding: 10px;
     margin: 10px;
+    margin-bottom: 0px;
     color:white;
 }
 
 .header nav {
     padding: 8px;
     margin: 7px;
+    margin-bottom: 0;
     margin-right: 10px;
     margin-top: 20px;
 }
@@ -36,7 +39,7 @@
     border-radius: 20px;
 }
 
-.header nav a:hover {
+.header nav a:not(:last-child):hover {
     background-color: white;
     color: lightgreen;
 }
@@ -45,7 +48,6 @@
     width: 40px;
     height: 35px;
     border-radius: 5px;
-    padding: ;
 }
 
 
@@ -85,7 +87,7 @@
     flex-direction: column;
 }
 
-.drinks .traditional-drinks h2, .drinks .non-traditional h2 , .vegetarial h2 , .non-vegetarial h2{
+.drinks .traditional-drinks h2, .drinks .non-traditional-drinks h2 , .vegetarial h2 , .non-vegetarial h2{
     align-self: center;
     padding: 10px;
     margin: 10px;
@@ -126,4 +128,33 @@
     right: 0;
     left: 0;
     padding: 20px;
+}
+
+details {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color:lightgreen;
+}
+
+details:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+summary {
+    font-size: 10px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    
+}
+
+details p {
+    margin: 10px 0 0;
+    color: #555;
+    font-size: 8px;
 }

@@ -1,0 +1,132 @@
+.cart-container {
+    margin-top: 100px;
+    padding: 20px;
+}
+
+.cart-title {
+    color: lightgreen;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.cart-table th {
+    background-color: lightgreen;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+.cart-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-btn {
+    background-color: lightgreen;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.quantity-input {
+    width: 40px;
+    text-align: center;
+    margin: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.remove-btn {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cart-summary {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cart-summary h3 {
+    color: lightgreen;
+    margin-bottom: 20px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.total-row {
+    font-weight: bold;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.checkout-btn {
+    background-color: lightgreen;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.checkout-btn:hover {
+    background-color: #7dce82;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 50px;
+}
+
+.continue-shopping {
+    display: inline-block;
+    background-color: lightgreen;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.continue-shopping:hover {
+    background-color: #7dce82;
+    color: white;
+}
