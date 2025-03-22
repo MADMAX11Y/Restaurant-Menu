@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
         notification.style.position = 'fixed';
         notification.style.bottom = '20px';
         notification.style.right = '20px';
-        notification.style.backgroundColor = '#4CAF50';
+        notification.style.backgroundColor = '#5c3d2e';
         notification.style.color = 'white';
         notification.style.padding = '10px 20px';
         notification.style.borderRadius = '5px';
