@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             addToCart(product);
             
-            showNotification(`${productName} added to cart!`);
+            showNotification(`You ordered ${productName}!`);
         });
     });
     

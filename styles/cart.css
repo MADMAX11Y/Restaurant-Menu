@@ -1,30 +1,39 @@
+/* Cart specific styles with CSS variables for dark mode compatibility */
 .cart-container {
     margin-top: 100px;
     padding: 20px;
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease;
 }
 
 .cart-title {
-    color: #5c3d2e;
+    color: var(--main-text);
     text-align: center;
     margin-bottom: 30px;
+    transition: color 0.3s ease;
 }
 
 .cart-table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 30px;
+    background-color: var(--card-bg);
+    transition: background-color 0.3s ease;
 }
 
 .cart-table th {
-    background-color: #5c3d2e;
-    color: white;
+    background-color: var(--header-bg);
+    color: var(--header-text);
     padding: 12px;
     text-align: left;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .cart-table td {
     padding: 12px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--card-border);
+    color: var(--main-text);
+    transition: border-color 0.3s ease, color 0.3s ease;
 }
 
 .cart-item-image {
@@ -32,6 +41,12 @@
     height: 80px;
     border-radius: 50%;
     object-fit: cover;
+    border: 2px solid var(--card-border);
+    transition: border-color 0.3s ease;
+}
+
+[data-theme="dark"] .cart-item-image {
+    filter: brightness(0.9);
 }
 
 .quantity-control {
@@ -40,23 +55,32 @@
 }
 
 .quantity-btn {
-    background-color: #5c3d2e;
-    color: white;
+    background-color: var(--button-bg);
+    color: var(--button-text);
     border: none;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.quantity-btn:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
 }
 
 .quantity-input {
     width: 40px;
     text-align: center;
     margin: 0 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--card-border);
     border-radius: 5px;
     padding: 5px;
+    background-color: var(--card-bg);
+    color: var(--main-text);
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .remove-btn {
@@ -66,36 +90,47 @@
     padding: 5px 10px;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.remove-btn:hover {
+    background-color: #ff5252;
 }
 
 .cart-summary {
-    background-color: #f9f9f9;
+    background-color: var(--card-bg);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px var(--shadow-color);
+    border: 1px solid var(--card-border);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .cart-summary h3 {
-    color: #5c3d2e;
+    color: var(--main-text);
     margin-bottom: 20px;
+    transition: color 0.3s ease;
 }
 
 .summary-row {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    color: var(--main-text);
+    transition: color 0.3s ease;
 }
 
 .total-row {
     font-weight: bold;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid var(--card-border);
     padding-top: 10px;
     margin-top: 10px;
+    transition: border-color 0.3s ease;
 }
 
 .checkout-btn {
-    background-color: #5c3d2e;
-    color: white;
+    background-color: var(--button-bg);
+    color: var(--button-text);
     border: none;
     padding: 12px 20px;
     border-radius: 25px;
@@ -103,30 +138,46 @@
     font-size: 16px;
     margin-top: 20px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .checkout-btn:hover {
-    background-color: #5c3d2e;
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
 }
 
 .empty-cart {
     text-align: center;
     padding: 50px;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.empty-cart h3 {
+    color: var(--main-text);
+    transition: color 0.3s ease;
+}
+
+.empty-cart p {
+    color: var(--main-text);
+    transition: color 0.3s ease;
 }
 
 .continue-shopping {
     display: inline-block;
-    background-color: #5c3d2e;
-    color: white;
+    background-color: var(--button-bg);
+    color: var(--button-text);
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 25px;
     margin-top: 20px;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .continue-shopping:hover {
-    background-color: #5c3d2e;
-    color: white;
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
+    text-decoration: none;
 }
