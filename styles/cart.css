@@ -128,7 +128,7 @@
     transition: border-color 0.3s ease;
 }
 
-.checkout-btn {
+#checkout-btn {
     background-color: var(--button-bg);
     color: var(--button-text);
     border: none;

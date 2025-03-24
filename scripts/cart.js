@@ -259,4 +259,6 @@ document.addEventListener('DOMContentLoaded', function() {
         summaryRows[3].querySelector('span:last-child').textContent = `${total.toFixed(2)} Birr`;
     }
     
+});
+
 
