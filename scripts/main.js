@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('cart', JSON.stringify(cart));
         
         updateCartCount();
+        console.log(cart);
+
     }
     
     function updateCartCount() {
@@ -135,3 +137,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event listener for theme switch
     toggleSwitch.addEventListener('change', switchTheme, false);
 });
+
+
