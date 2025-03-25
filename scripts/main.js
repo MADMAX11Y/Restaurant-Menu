@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 document.body.removeChild(notification);
             }, 300);
-        }, 3000);
+        }, 1000);
     }
 });
 
@@ -139,3 +139,24 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    // ... (existing code)
+
+    const navLinks = document.querySelectorAll('.header nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // Remove 'active' class from all links
+            navLinks.forEach(navLink => {
+                navLink.classList.remove('active');
+            });
+
+            // Add 'active' class to the clicked link
+            this.classList.add('active');
+
+            // ... (existing code)
+        });
+    });
+
+    // ... (existing code)
+});

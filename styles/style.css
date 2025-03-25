@@ -174,15 +174,28 @@ body {
     padding-bottom: 0;
     text-decoration: none;
     color: var(--nav-link);
-    border-radius: px;
+    border-radius: 10px;
     font-size: 0.9rem;
     transition: all 0.3s ease;
+}
+
+.header nav a {
+    color: var(--header-text);
+    text-decoration: none;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.header nav a.active {
+    background-color: var(--nav-hover-bg);
+    color: var(--nav-hover-text);
 }
 
 .header nav a:hover {
     background-color: var(--nav-hover-bg);
     color: var(--nav-hover-text);
 }
+
 
 .cart-icon img {
     width: 30px;
