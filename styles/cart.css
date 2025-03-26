@@ -182,3 +182,103 @@
     text-decoration: none;
 }
 
+/* Nutrition and Alcohol Summary Styles */
+.nutrition-alcohol-summary {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+[data-theme="dark"] .nutrition-alcohol-summary {
+    background-color: #2d2d2d;
+    border-color: #444;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.nutrition-alcohol-summary h3 {
+    color: #5c3d2e;
+    margin-bottom: 15px;
+}
+
+[data-theme="dark"] .nutrition-alcohol-summary h3 {
+    color: #e6b17e;
+}
+
+.nutrition-section, .alcohol-section {
+    margin-bottom: 20px;
+}
+
+.nutrition-section h4, .alcohol-section h4 {
+    color: #5c3d2e;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+[data-theme="dark"] .nutrition-section h4, 
+[data-theme="dark"] .alcohol-section h4 {
+    color: #e6b17e;
+    border-bottom-color: #444;
+}
+
+.nutrition-row, .alcohol-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+[data-theme="dark"] .nutrition-row, 
+[data-theme="dark"] .alcohol-row {
+    color: #ddd;
+}
+
+.alcohol-warning {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.alcohol-warning.low {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #2e7d32;
+}
+
+.alcohol-warning.moderate {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #ff8f00;
+}
+
+.alcohol-warning.high {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: #d32f2f;
+}
+
+[data-theme="dark"] .alcohol-warning.low {
+    background-color: rgba(76, 175, 80, 0.3);
+    color: #81c784;
+}
+
+[data-theme="dark"] .alcohol-warning.moderate {
+    background-color: rgba(255, 193, 7, 0.3);
+    color: #ffd54f;
+}
+
+[data-theme="dark"] .alcohol-warning.high {
+    background-color: rgba(244, 67, 54, 0.3);
+    color: #e57373;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .nutrition-alcohol-summary {
+        margin-top: 20px;
+    }
+}

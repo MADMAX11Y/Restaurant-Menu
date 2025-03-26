@@ -13,11 +13,48 @@ document.addEventListener('DOMContentLoaded', function() {
             const productImage = productContainer.querySelector('img').src;
             const imageName = productImage.split('/').pop();
             
+            // Extract nutrition facts and alcohol content
+            let nutritionFacts = null;
+            let alcoholContent = null;
+            
+            // Check if the product has nutrition facts
+            const detailsElement = productContainer.querySelector('details');
+            if (detailsElement) {
+                const summaryText = detailsElement.querySelector('summary').textContent;
+                
+                // Check if it's a food item with nutrition facts
+                if (summaryText === 'Nutrition Facts') {
+                    const nutritionDetails = detailsElement.querySelectorAll('p');
+                    nutritionFacts = {
+                        calories: extractNutritionValue(nutritionDetails[0].textContent, 'Calories'),
+                        carbs: extractNutritionValue(nutritionDetails[1].textContent, 'Carbohydrates'),
+                        protein: extractNutritionValue(nutritionDetails[2].textContent, 'Protein'),
+                        fat: extractNutritionValue(nutritionDetails[3].textContent, 'Fat'),
+                        cholesterol: extractNutritionValue(nutritionDetails[4].textContent, 'Cholesterol')
+                    };
+                }
+                // Check if it's a drink with alcohol content
+                else if (summaryText === 'Read more') {
+                    const alcoholText = detailsElement.querySelector('p').textContent;
+                    if (alcoholText.includes('Alcohol Content')) {
+                        // Extract alcohol percentage (e.g., "6-11% ABV" -> 8.5)
+                        const alcoholMatch = alcoholText.match(/(\d+)-(\d+)%/);
+                        if (alcoholMatch) {
+                            const minAlcohol = parseFloat(alcoholMatch[1]);
+                            const maxAlcohol = parseFloat(alcoholMatch[2]);
+                            alcoholContent = (minAlcohol + maxAlcohol) / 2; // Average value
+                        }
+                    }
+                }
+            }
+            
             const product = {
                 name: productName,
                 price: productPrice,
                 image: 'images/' + imageName,
-                quantity: 1
+                quantity: 1,
+                nutritionFacts: nutritionFacts,
+                alcoholContent: alcoholContent
             };
 
             addToCart(product);
@@ -25,6 +62,31 @@ document.addEventListener('DOMContentLoaded', function() {
             showNotification(`You ordered ${productName}!`);
         });
     });
+    
+    // Helper function to extract nutrition values
+    function extractNutritionValue(text, nutrient) {
+        const regex = new RegExp(`${nutrient}:\\s*([\\d.-]+)(?:-([\\d.]+))?\\s*([a-zA-Z]+)`);
+        const match = text.match(regex);
+        
+        if (match) {
+            if (match[2]) {
+                // If there's a range (e.g., "350-450 kcal"), take the average
+                const min = parseFloat(match[1]);
+                const max = parseFloat(match[2]);
+                return {
+                    value: (min + max) / 2,
+                    unit: match[3]
+                };
+            } else {
+                // Single value
+                return {
+                    value: parseFloat(match[1]),
+                    unit: match[3]
+                };
+            }
+        }
+        return null;
+    }
     
     function addToCart(product) {
         const cart = JSON.parse(localStorage.getItem('cart'));
@@ -40,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         updateCartCount();
         console.log(cart);
-
     }
     
     function updateCartCount() {
@@ -80,34 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.header nav');
-    
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            nav.classList.toggle('active');
-        });
-    }
-    
-    const navLinks = document.querySelectorAll('.header nav a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            if (window.innerWidth <= 480) {
-                nav.classList.remove('active');
-            }
-        });
-    });
-    
-    document.addEventListener('click', function(event) {
-        const isClickInsideNav = nav.contains(event.target);
-        const isClickOnToggle = menuToggle.contains(event.target);
-        
-        if (!isClickInsideNav && !isClickOnToggle && nav.classList.contains('active')) {
-            nav.classList.remove('active');
-        }
-    });
-});
 
 // Dark mode toggle functionality
 document.addEventListener('DOMContentLoaded', () => {
@@ -136,27 +169,4 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Event listener for theme switch
     toggleSwitch.addEventListener('change', switchTheme, false);
-});
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    // ... (existing code)
-
-    const navLinks = document.querySelectorAll('.header nav a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            // Remove 'active' class from all links
-            navLinks.forEach(navLink => {
-                navLink.classList.remove('active');
-            });
-
-            // Add 'active' class to the clicked link
-            this.classList.add('active');
-
-            // ... (existing code)
-        });
-    });
-
-    // ... (existing code)
 });

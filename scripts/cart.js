@@ -1,138 +1,17 @@
-// cart.js - Cart functionality with dark mode compatibility
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Cart functionality
-    const quantityBtns = document.querySelectorAll('.quantity-btn');
-    const quantityInputs = document.querySelectorAll('.quantity-input');
-    const removeBtns = document.querySelectorAll('.remove-btn');
-    const checkoutBtn = document.querySelector('.checkout-btn');
-    
-    // Handle quantity buttons
-    quantityBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const input = this.parentElement.querySelector('.quantity-input');
-            let value = parseInt(input.value);
-            
-            if (this.textContent === '+') {
-                value++;
-            } else if (this.textContent === '-' && value > 1) {
-                value--;
-            }
-            
-            input.value = value;
-            updateCartTotals();
-        });
-    });
-    
-    // Handle quantity input changes
-    quantityInputs.forEach(input => {
-        input.addEventListener('change', function() {
-            let value = parseInt(this.value);
-            
-            // Ensure value is a number and at least 1
-            if (isNaN(value) || value < 1) {
-                this.value = 1;
-            }
-            
-            updateCartTotals();
-        });
-    });
-    
-    // Handle remove buttons
-    removeBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const row = this.closest('tr');
-            row.remove();
-            updateCartTotals();
-            checkEmptyCart();
-        });
-    });
-    
-    // Handle checkout button
-    if (checkoutBtn) {
-        checkoutBtn.addEventListener('click', function() {
-            alert('Thank you for your order!');
-            // Clear cart and redirect to home page
-            clearCart();
-            // window.location.href = 'index.html';
-        });
-    }
-    
-    // Function to update cart totals
-    function updateCartTotals() {
-        const cartItems = document.querySelectorAll('#cart-items tr');
-        let subtotal = 0;
-        
-        cartItems.forEach(item => {
-            const price = parseFloat(item.querySelector('td:nth-child(2)').textContent.replace(' ', 'Birr'));
-            const quantity = parseInt(item.querySelector('.quantity-input').value);
-            const total = price * quantity;
-            
-            // Update row total
-            item.querySelector('td:nth-child(4)').textContent = total.toFixed(2) +  ' Birr';
-            
-            subtotal += total;
-        });
-        
-        // Update summary
-        const tax = subtotal * 0.1;
-        const delivery = 5;
-        const total = subtotal + tax + delivery;
-        
-        const summaryRows = document.querySelectorAll('.summary-row');
-        if (summaryRows.length >= 4) {
-            summaryRows[0].querySelector('span:last-child').textContent = + subtotal.toFixed(2) + ' Birr';
-            summaryRows[1].querySelector('span:last-child').textContent =  + tax.toFixed(2) + ' Birr';
-            summaryRows[2].querySelector('span:last-child').textContent = + delivery.toFixed(2) + ' Birr';
-            summaryRows[3].querySelector('span:last-child').textContent = + total.toFixed(2) + ' Birr';
-        }
-    }
-    
-    // Function to check if cart is empty
-    function checkEmptyCart() {
-        const cartItems = document.querySelectorAll('#cart-items tr');
-        const cartTable = document.querySelector('.cart-table');
-        const emptyCart = document.querySelector('.empty-cart');
-        const cartSummary = document.querySelector('.cart-summary');
-        
-        if (cartItems.length === 0) {
-            if (cartTable) cartTable.style.display = 'none';
-            if (emptyCart) emptyCart.style.display = 'block';
-            if (cartSummary) cartSummary.style.display = 'none';
-        } else {
-            if (cartTable) cartTable.style.display = 'table';
-            if (emptyCart) emptyCart.style.display = 'none';
-            if (cartSummary) cartSummary.style.display = 'block';
-        }
-    }
-    
-    // Function to clear cart
-    function clearCart() {
-        const cartItems = document.querySelector('#cart-items');
-        if (cartItems) {
-            cartItems.innerHTML = '';
-            checkEmptyCart();
-        }
-    }
-    
-    // Initialize cart
-    updateCartTotals();
-    checkEmptyCart();
-});
-
-
 document.addEventListener('DOMContentLoaded', function() {
     // Load cart items from localStorage
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartItemsContainer = document.getElementById('cart-items');
     const cartTable = document.querySelector('.cart-table');
     const cartSummary = document.querySelector('.cart-summary');
+    const nutritionAlcoholSummary = document.querySelector('.nutrition-alcohol-summary');
     const emptyCartMessage = document.querySelector('.empty-cart');
     
     // Check if cart is empty
     if (cart.length === 0) {
         cartTable.style.display = 'none';
         cartSummary.style.display = 'none';
+        if (nutritionAlcoholSummary) nutritionAlcoholSummary.style.display = 'none';
         emptyCartMessage.style.display = 'block';
     } else {
         // Clear any example items
@@ -170,6 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Update cart totals
         updateCartTotals();
+        // Update nutrition and alcohol summary
+        updateNutritionAndAlcoholSummary();
     }
     
     // Add event listeners for quantity buttons
@@ -198,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
             row.querySelector('td:nth-child(4)').textContent = `${itemTotal.toFixed(2)} Birr`;
             
             updateCartTotals();
+            updateNutritionAndAlcoholSummary();
         });
     });
     
@@ -222,11 +104,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             updateCartTotals();
+            updateNutritionAndAlcoholSummary();
             
             // Show empty cart message if cart is empty
             if (cart.length === 0) {
                 cartTable.style.display = 'none';
                 cartSummary.style.display = 'none';
+                if (nutritionAlcoholSummary) nutritionAlcoholSummary.style.display = 'none';
                 emptyCartMessage.style.display = 'block';
             }
         });
@@ -253,10 +137,94 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Update summary display
         const summaryRows = document.querySelectorAll('.summary-row');
-        summaryRows[0].querySelector('span:last-child').textContent = `${subtotal.toFixed(2)} Birr`;
-        summaryRows[1].querySelector('span:last-child').textContent = `${tax.toFixed(2)} Birr`;
-        summaryRows[2].querySelector('span:last-child').textContent = `${delivery.toFixed(2)} Birr`;
-        summaryRows[3].querySelector('span:last-child').textContent = `${total.toFixed(2)} Birr`;
+        if (summaryRows.length >= 4) {
+            summaryRows[0].querySelector('span:last-child').textContent = `${subtotal.toFixed(2)} Birr`;
+            summaryRows[1].querySelector('span:last-child').textContent = `${tax.toFixed(2)} Birr`;
+            summaryRows[2].querySelector('span:last-child').textContent = `${delivery.toFixed(2)} Birr`;
+            summaryRows[3].querySelector('span:last-child').textContent = `${total.toFixed(2)} Birr`;
+        }
     }
     
+    // Function to update nutrition and alcohol summary
+    function updateNutritionAndAlcoholSummary() {
+        if (!document.getElementById('total-calories')) return;
+        
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Initialize nutrition totals
+        let totalCalories = 0;
+        let totalCarbs = 0;
+        let totalProtein = 0;
+        let totalFat = 0;
+        let totalCholesterol = 0;
+        
+        // Initialize alcohol totals
+        let totalAlcoholPercentage = 0;
+        let totalAlcoholItems = 0;
+        let totalAlcoholUnits = 0;
+        
+        // Calculate nutrition and alcohol totals
+        cart.forEach(item => {
+            const quantity = item.quantity;
+            
+            // Add nutrition facts if available
+            if (item.nutritionFacts) {
+                if (item.nutritionFacts.calories) totalCalories += item.nutritionFacts.calories.value * quantity;
+                if (item.nutritionFacts.carbs) totalCarbs += item.nutritionFacts.carbs.value * quantity;
+                if (item.nutritionFacts.protein) totalProtein += item.nutritionFacts.protein.value * quantity;
+                if (item.nutritionFacts.fat) totalFat += item.nutritionFacts.fat.value * quantity;
+                if (item.nutritionFacts.cholesterol) totalCholesterol += item.nutritionFacts.cholesterol.value * quantity;
+            }
+            
+            // Add alcohol content if available
+            if (item.alcoholContent) {
+                totalAlcoholPercentage += item.alcoholContent * quantity;
+                totalAlcoholItems += quantity;
+                
+                // Calculate alcohol units (rough estimation: percentage * volume in liters)
+                // Assuming a standard drink is about 0.25L
+                const estimatedVolume = 0.25; // liters
+                const alcoholUnits = (item.alcoholContent / 100) * estimatedVolume * 8 * quantity;
+                totalAlcoholUnits += alcoholUnits;
+            }
+        });
+        
+        // Calculate average alcohol percentage
+        const avgAlcoholPercentage = totalAlcoholItems > 0 ? totalAlcoholPercentage / totalAlcoholItems : 0;
+        
+        // Update nutrition display
+        document.getElementById('total-calories').textContent = `${Math.round(totalCalories)} kcal`;
+        document.getElementById('total-carbs').textContent = `${Math.round(totalCarbs)} g`;
+        document.getElementById('total-protein').textContent = `${Math.round(totalProtein)} g`;
+        document.getElementById('total-fat').textContent = `${Math.round(totalFat)} g`;
+        document.getElementById('total-cholesterol').textContent = `${Math.round(totalCholesterol)} mg`;
+        
+        // Update alcohol display
+        document.getElementById('avg-alcohol').textContent = `${avgAlcoholPercentage.toFixed(1)}%`;
+        document.getElementById('total-alcohol-units').textContent = `${totalAlcoholUnits.toFixed(1)} units`;
+        
+        // Update alcohol warning message
+        const alcoholWarningElement = document.getElementById('alcohol-warning');
+        if (alcoholWarningElement) {
+            if (totalAlcoholUnits > 0) {
+                let warningMessage = '';
+                
+                if (totalAlcoholUnits < 2) {
+                    warningMessage = 'Low alcohol content. Safe for most adults.';
+                    alcoholWarningElement.className = 'alcohol-warning low';
+                } else if (totalAlcoholUnits < 4) {
+                    warningMessage = 'Moderate alcohol content. Please drink responsibly.';
+                    alcoholWarningElement.className = 'alcohol-warning moderate';
+                } else {
+                    warningMessage = 'High alcohol content. Please drink responsibly and consider sharing.';
+                    alcoholWarningElement.className = 'alcohol-warning high';
+                }
+                
+                alcoholWarningElement.textContent = warningMessage;
+                alcoholWarningElement.style.display = 'block';
+            } else {
+                alcoholWarningElement.style.display = 'none';
+            }
+        }
+    }
 });
