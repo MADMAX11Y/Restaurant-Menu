@@ -124,3 +124,19 @@
 [data-theme="dark"] input[type="checkbox"] {
     accent-color: var(--button-bg);
 }
+
+/* Add these to your login.css */
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}
+
+.input-error {
+    border-color: #dc3545 !important;
+}
+
+.input-error:focus {
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25) !important;
+}

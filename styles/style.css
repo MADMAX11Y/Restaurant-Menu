@@ -752,3 +752,107 @@ details p {
     transform: scale(1.2);
     filter: brightness(1);
 }
+
+/* Auth Navigation Styles */
+.user-greeting {
+    margin-right: 15px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    
+}
+
+.user-greeting::before {
+    content: "👋";
+    font-size: 0.9em;
+}
+
+#authNav {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 500;
+    border: 2px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#authNav:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+#authNav.logout-btn {
+    background-color: var(--card-hover-border);
+    padding: 8px 5px;
+}
+
+#authNav.logout-btn:hover {
+    background-color: #ff7875;
+}
+
+#authNav.logout-btn::before {
+    font-size: 0.9em;
+}
+
+#authNav:not(.logout-btn)::before {
+    content: "🔑";
+    font-size: 0.9em;
+}
+
+/* Notification System */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    background: #52c41a;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    transform: translateX(200%);
+    transition: transform 0.3s ease-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 300px;
+}
+
+.notification.error {
+    background: #ff4d4f;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification::before {
+    font-size: 1.2em;
+}
+
+.notification.success::before {
+    content: "✓";
+}
+
+.notification.error::before {
+    content: "✗";
+}
+
+/* Dark mode adjustments */
+.dark-mode .user-greeting {
+    color: var(--dark-text-color);
+}
+
+.dark-mode #authNav:not(.logout-btn) {
+    background-color: var(--dark-primary);
+    color: var(--dark-text-color);
+}

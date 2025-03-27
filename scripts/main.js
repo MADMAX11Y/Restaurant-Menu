@@ -170,3 +170,58 @@ document.addEventListener('DOMContentLoaded', () => {
     // Event listener for theme switch
     toggleSwitch.addEventListener('change', switchTheme, false);
 });
+
+// Get menu items from admin panel
+function getMenuItems() {
+    return JSON.parse(localStorage.getItem('admin-menu')) || [];
+}
+
+// Add order (called when user clicks "Order")
+function addOrder(item) {
+    const orders = JSON.parse(localStorage.getItem('main-orders')) || [];
+    orders.push({
+        ...item,
+        date: new Date().toISOString(),
+        status: 'pending'
+    });
+    localStorage.setItem('main-orders', JSON.stringify(orders));
+    showNotification(`Order placed for ${item.name}!`);
+}
+
+// Submit feedback (called when user submits feedback form)
+function submitFeedback(feedback) {
+    const feedbacks = JSON.parse(localStorage.getItem('main-feedback')) || [];
+    feedbacks.push({
+        ...feedback,
+        date: new Date().toISOString()
+    });
+    localStorage.setItem('main-feedback', JSON.stringify(feedbacks));
+}
+
+// Listen for changes made in other tabs/windows
+window.addEventListener('storage', (event) => {
+    if (event.key === 'admin-menu') {
+        // Menu was updated in admin panel
+        console.log('Menu updated!', event.newValue);
+        // Refresh menu display on main site
+    }
+    
+    if (event.key === 'main-orders') {
+        // New order was placed
+        console.log('New order!', event.newValue);
+        // Refresh orders list in admin panel
+    }
+});
+
+// Initialize empty data stores if they don't exist
+if (!localStorage.getItem('main-orders')) {
+    localStorage.setItem('main-orders', JSON.stringify([]));
+}
+
+if (!localStorage.getItem('main-feedback')) {
+    localStorage.setItem('main-feedback', JSON.stringify([]));
+}
+
+// Load menu from admin panel
+const menuItems = getMenuItems();
+// ... render menu items ...

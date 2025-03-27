@@ -3,47 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
+    <title>Admin Panel - Habesha Restaurant</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="style.css">
-</head>
 <body>
-    <div class="admin-container">
-        <header class="admin-header">
-            <h1>Admin Panel</h1>
+    <div class="all">
+        <div class="header">
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox"/>
+                    <div class="slider"></div>
+                </label>
+            </div>
+            
+            <h1>Habesha Restaurant - Admin Panel</h1>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <nav>
                 <a href="#dashboard">Dashboard</a>
-                <a href="#menu">Manage Menu</a>
+                <a href="#menu-management">Menu Management</a>
                 <a href="#orders">Orders</a>
-                <a href="#feedback">Feedback</a>
-                <a href="index.html">Logout</a>
+                <a href="#feedback">Customer Feedback</a>
+                <a href="index.html">Back to Main Site</a>
             </nav>
-        </header>
+        </div>
         
-        <main class="admin-main">
-            <section id="dashboard">
-                <h2>Dashboard</h2>
-                <p>Welcome, Admin. Here is an overview of recent activity.</p>
+        <div class="admin-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="admin-section">
+                <h2>Dashboard Overview</h2>
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <h3>Total Orders</h3>
+                        <p id="total-orders">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pending Orders</h3>
+                        <p id="pending-orders">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Revenue</h3>
+                        <p id="total-revenue">0.00 Birr</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Customer Feedback</h3>
+                        <p id="total-feedback">0</p>
+                    </div>
+                </div>
             </section>
-            
-            <section id="menu">
-                <h2>Manage Menu</h2>
-                <button id="add-item">Add New Item</button>
-                <ul id="menu-list"></ul>
+
+            <!-- Menu Management Section -->
+            <section id="menu-management" class="admin-section">
+                <h2>Menu Management</h2>
+                <div class="menu-management-container">
+                    <div class="add-menu-item">
+                        <h3>Add New Menu Item</h3>
+                        <form id="add-menu-form">
+                            <div class="form-group">
+                                <label for="item-name">Item Name</label>
+                                <input type="text" id="item-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="item-type">Item Type</label>
+                                <select id="item-type" required>
+                                    <option value="">Select Type</option>
+                                    <option value="vegetarian">Vegetarian Food</option>
+                                    <option value="non-vegetarian">Non-Vegetarian Food</option>
+                                    <option value="traditional">Traditional Drink</option>
+                                    <option value="non-traditional">Non-Traditional Drink</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="item-price">Price (Birr)</label>
+                                <input type="number" id="item-price" min="0" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="item-image">Image URL</label>
+                                <input type="text" id="item-image" placeholder="images/filename.jpg">
+                            </div>
+                            <div class="form-group">
+                                <label for="item-description">Description</label>
+                                <textarea id="item-description"></textarea>
+                            </div>
+                            <button type="submit" class="admin-button">Add Item</button>
+                        </form>
+                    </div>
+                    
+                    <div class="current-menu">
+                        <h3>Current Menu Items</h3>
+                        <div class="menu-items-list" id="menu-items-list">
+                            <!-- Menu items will be loaded here -->
+                        </div>
+                    </div>
+                </div>
             </section>
-            
-            <section id="orders">
-                <h2>Orders</h2>
-                <ul id="order-list"></ul>
+
+            <!-- Orders Section -->
+            <section id="orders" class="admin-section">
+                <h2>Customer Orders</h2>
+                <div class="orders-container">
+                    <div class="order-filters">
+                        <button class="admin-button filter-btn active" data-filter="all">All Orders</button>
+                        <button class="admin-button filter-btn" data-filter="pending">Pending</button>
+                        <button class="admin-button filter-btn" data-filter="completed">Completed</button>
+                    </div>
+                    <div class="orders-list" id="orders-list">
+                        <!-- Orders will be loaded here -->
+                    </div>
+                </div>
             </section>
-            
-            <section id="feedback">
+
+            <!-- Feedback Section -->
+            <section id="feedback" class="admin-section">
                 <h2>Customer Feedback</h2>
-                <ul id="feedback-list"></ul>
+                <div class="feedback-container">
+                    <div class="feedback-filters">
+                        <button class="admin-button filter-btn active" data-filter="all-feedback">All Feedback</button>
+                        <button class="admin-button filter-btn" data-filter="positive">Positive (4-5★)</button>
+                        <button class="admin-button filter-btn" data-filter="neutral">Neutral (3★)</button>
+                        <button class="admin-button filter-btn" data-filter="negative">Negative (1-2★)</button>
+                    </div>
+                    <div class="feedback-list" id="feedback-list">
+                        <!-- Feedback will be loaded here -->
+                    </div>
+                </div>
             </section>
-        </main>
+        </div>
+        
+        <div class="footer">
+            <p>&copy; 2025 Habesha Restaurant Admin Panel. All Rights Reserved.</p>
+        </div>
     </div>
-    
-    <script src="script.js"></script>
+
+    <script src="../scripts/main.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
