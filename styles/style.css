@@ -864,3 +864,61 @@ details p {
     background-color: var(--dark-primary);
     color: #f9f5f0;
 }
+
+/* Add these to your existing CSS */
+
+/* Menu toggle animation */
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.menu-toggle span {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Mobile menu styles */
+@media (max-width: 480px) {
+    .header nav {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: var(--header-bg);
+        box-shadow: 0 5px 10px var(--shadow-color);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+    
+    .header nav.active {
+        max-height: 500px;
+        padding: 10px 0;
+    }
+    
+    .header nav a {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        margin: 0;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(214, 163, 115, 0.2);
+    }
+    
+    .header nav a:hover {
+        background-color: var(--nav-hover-bg);
+        color: var(--nav-hover-text);
+    }
+    
+    .theme-switch-wrapper {
+        top: 15px;
+        right: 60px;
+    }
+}

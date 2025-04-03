@@ -309,3 +309,50 @@ button:hover {
 .payment-container:hover {
     box-shadow: 0 12px 30px var(--shadow-hover);
 }
+
+/* Add to payment.css */
+.order-item {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--input-border);
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+#payment-status {
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 20px;
+    display: none;
+}
+
+#payment-status.processing {
+    background-color: rgba(33, 150, 243, 0.1);
+    border-left: 3px solid #2196F3;
+    color: #2196F3;
+}
+
+#payment-status.success {
+    background-color: rgba(76, 175, 80, 0.1);
+    border-left: 3px solid #4CAF50;
+    color: #4CAF50;
+}
+
+#payment-status.error {
+    background-color: rgba(244, 67, 54, 0.1);
+    border-left: 3px solid #F44336;
+    color: #F44336;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+@media (max-width: 767px) {
+    .button-group {
+        flex-direction: column;
+    }
+}

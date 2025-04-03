@@ -225,3 +225,40 @@ if (!localStorage.getItem('main-feedback')) {
 // Load menu from admin panel
 const menuItems = getMenuItems();
 // ... render menu items ...
+
+// Menu toggle functionality for mobile
+document.addEventListener('DOMContentLoaded', function() {
+    // Existing code...
+
+    // Add menu toggle functionality
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.header nav');
+    
+    menuToggle.addEventListener('click', function() {
+        nav.classList.toggle('active');
+        this.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a nav link
+    const navLinks = document.querySelectorAll('.header nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 480) {
+                nav.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (window.innerWidth <= 480 && 
+            !nav.contains(event.target) && 
+            !menuToggle.contains(event.target)) {
+            nav.classList.remove('active');
+            menuToggle.classList.remove('active');
+        }
+    });
+
+    // Existing code...
+});
