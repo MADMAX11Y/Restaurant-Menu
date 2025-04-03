@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Habesha Restaurant</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/style.css">
-    <link rel="stylesheet" href="style.css">
-<body>
-    <div class="all">
-        <div class="header">
-            <div class="theme-switch-wrapper">
-                <label class="theme-switch" for="checkbox">
-                    <input type="checkbox" id="checkbox"/>
-                    <div class="slider"></div>
-                </label>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Admin panel for Habesha Restaurant management">
+        <title>Admin Panel - Habesha Restaurant</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="all">
+            <div class="header">
+                <div class="header-left">
+                    <div class="theme-switch-wrapper">
+                        <label class="theme-switch" for="checkbox">
+                            <input type="checkbox" id="checkbox"/>
+                            <div class="slider"></div>
+                        </label>
+                    </div>
+                    <h1>Habesha Restaurant - Admin Panel</h1>
+                </div>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <nav class="mobile-nav">
+                    <a href="#dashboard">Dashboard</a>
+                    <a href="#menu-management">Menu Management</a>
+                    <a href="#orders">Orders</a>
+                    <a href="#feedback">Customer Feedback</a>
+                </nav>
             </div>
-            
-            <h1>Habesha Restaurant - Admin Panel</h1>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <nav>
-                <a href="#dashboard">Dashboard</a>
-                <a href="#menu-management">Menu Management</a>
-                <a href="#orders">Orders</a>
-                <a href="#feedback">Customer Feedback</a>
-                <a href="index.html">Back to Main Site</a>
-            </nav>
         </div>
         
         <div class="admin-content">
@@ -140,6 +145,6 @@
     </div>
 
     <script src="../scripts/main.js"></script>
-    <script src="scripts.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
