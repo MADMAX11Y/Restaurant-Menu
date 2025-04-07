@@ -39,10 +39,10 @@
             <!-- Accepted Payment Methods -->
             <div class="payment-methods">
                 <h4>Accepted Payment Methods</h4>
-                <label><input type="radio" name="payment-method" value="Awash Bank" required> Awash Bank</label>
-                <label><input type="radio" name="payment-method" value="CBE" required> Commercial Bank of Ethiopia (CBE)</label>
-                <label><input type="radio" name="payment-method" value="BOA" required> Bank of Abyssinia (BOA)</label>
-                <label><input type="radio" name="payment-method" value="Dashen Bank" required> Dashen Bank</label>
+                <label><input type="radio" name="payment-method" value="Awash Bank" minlength="11" maxlength="11" required> Awash Bank</label>
+                <label><input type="radio" name="payment-method" value="CBE" minlength="13" maxlength="13" required> Commercial Bank of Ethiopia (CBE)</label>
+                <label><input type="radio" name="payment-method" value="BOA" minlength="8" maxlength="12" required> Bank of Abyssinia (BOA)</label>
+                <label><input type="radio" name="payment-method" value="Dashen Bank" minlength="10" maxlength="10" required> Dashen Bank</label>
             </div>
 
             <!-- Billing Information -->
@@ -53,11 +53,13 @@
                 <input type="text" id="bank-account" placeholder="Bank Account Number" required>
             </div>
 
-            <!-- Screenshot Upload -->
-            <div class="screenshot-upload">
-                <h4>Upload Payment Screenshot or Bill Photo</h4>
-                <input type="file" id="screenshot" accept="image/*" required>
-                <img id="screenshot-preview" src="" alt="Screenshot Preview" style="display: none; max-width: 100%; margin-top: 10px;">
+            <!-- Address Information -->
+            <div class="address-info">
+                <h4>Delivery Address</h4>
+                <input type="text" id="street" placeholder="Street Address" required>
+                <input type="text" id="city" placeholder="City" required>
+                <input type="text" id="state" placeholder="State/Region" required>
+                <input type="text" id="zip-code" placeholder="Zip Code" required>
             </div>
 
             <!-- Confirm & Cancel Buttons -->
