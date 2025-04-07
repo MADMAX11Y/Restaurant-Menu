@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.setItem('orders', JSON.stringify(orders));
             localStorage.setItem('cart', JSON.stringify([]));
 
-            showStatus('Payment successful! Thank you for your order.', 'success');
+            showStatus('Your payment request successfully sent! Thank you for your order.', 'success');
 
             setTimeout(() => {
                 window.location.href = 'index.html';
